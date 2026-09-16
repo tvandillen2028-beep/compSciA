@@ -1,0 +1,101 @@
+package graphicsAssignment;
+
+/**
+ *
+ * @author tvandillen2028
+ */
+import java.awt.*;
+import javax.swing.*;
+
+
+public class graphicsAssignment extends JPanel{
+  
+  //this is a constructor method.
+  public graphicsAssignment(){
+    super();
+  }
+  
+    /* Create a paintComponent() method to override the one in
+    JPanel.This is where the drawing happens. We don't have 
+    to call it in our program, it gets called automatically 
+    whenever the panel needs to be redrawn, like when it is 
+    made visible or moved or whatever.
+  */
+  public void paintComponent(Graphics g){
+    final int MID = 150;
+    final int TOP = 50;
+    g.setColor(Color.lightGray); //set the graphics object's paint color
+    //for next action
+ 
+// Sun
+g.setColor(Color.yellow);
+g.fillOval(-40, -40, 80, 80);
+
+// Snowman
+g.setColor(Color.white);
+g.fillOval(MID-25, TOP, 50, 45);        // head
+g.fillOval(MID-40, TOP+40, 80, 55);     // upper torso
+g.fillOval(MID-55, TOP+90, 110, 65);    // lower torso
+
+// Eyes
+g.setColor(Color.black);
+g.fillOval(MID-12, TOP+12, 6, 6);       // left eye
+g.fillOval(MID+7, TOP+12, 6, 6);        // right eye
+
+// Carrot nose
+g.setColor(Color.orange);
+int[] noseX = {MID, MID+25, MID};
+int[] noseY = {TOP+22, TOP+27, TOP+32};
+g.fillPolygon(noseX, noseY, 3);
+
+// Smile
+g.setColor(Color.black);
+g.drawArc(MID-12, TOP+22, 24, 15, 200, 140);
+
+// Stick arms
+g.drawLine(MID-35, TOP+65, MID-75, TOP+45);   // left arm
+g.drawLine(MID+35, TOP+65, MID+75, TOP+40);   // right arm
+
+// Red scarf
+g.setColor(Color.red);
+g.fillRect(MID-40, TOP+43, 80, 10);       // scarf around neck
+g.fillRect(MID+20, TOP+50, 15, 30);       // hanging part
+
+// Black buttons
+g.setColor(Color.black);
+g.fillOval(MID-5, TOP+65, 10, 10);
+g.fillOval(MID-5, TOP+90, 10, 10);
+g.fillOval(MID-5, TOP+115, 10, 10);
+
+// Blue hat
+g.setColor(Color.blue);
+g.fillRect(MID-18, TOP-20, 36, 25);       // top of hat
+g.fillRect(MID-28, TOP+5, 56, 8);         // brim
+
+g.setColor(Color.GREEN);
+
+
+    g.fillPolygon(new int[] {175, 220, 275}, new int[] {200, 20, 200}, 3);
+  }
+
+    /**
+     * @param arg
+     */
+    public static void main(String arg[]){
+        //create a new JFrame object, initialize
+        JFrame frame = new JFrame("Display Graphics");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400,300);
+
+        // Create a new identifier for a Basic JPanel (DisplayGraphics) called "panel",
+        // then create a new BasicJPanel object for it to refer to.
+        graphicsAssignment panel = new graphicsAssignment();
+
+        // Make the panel object the content pane of the JFrame.
+        // This puts it into the drawable area of frame, and now
+        // we do all our drawing to panel, using paintComponent(), above.
+        frame.setContentPane(panel);
+        frame.setVisible(true);
+    }
+    
+}
