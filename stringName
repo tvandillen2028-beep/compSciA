@@ -1,0 +1,32 @@
+public class StringName {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+        String name = "Trenton van Dillen";
+        
+        //print my name
+        System.out.println("My name is " + name);
+        
+        //name length
+        System.out.println("My name length is " + name.length());
+        
+        //upercase
+        System.out.println("My name in uppercase is " + name.toUpperCase());
+        
+        //lowercase
+        System.out.println("My name is lowercase is " + name.toLowerCase());
+        
+        //First letter
+        System.out.println("The first letter in my name is " + name.charAt(0));
+        
+        //Last letter
+        System.out.println("The last letter in my name is " + name.charAt(name.length()-1));
+        
+        //Index of space
+        System.out.println("The index of space between the names is " + name.indexOf(" "));
+    }
+    
+}
