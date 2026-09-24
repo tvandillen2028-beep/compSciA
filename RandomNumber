@@ -1,0 +1,48 @@
+public class RandomNumber {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+   Scanner scanner = new Scanner(System.in);
+  Random random = new Random();
+  
+  System.out.println("--- Random Phone Number Generator ---");
+  System.out.println("Press 'p' to generate a phone number");
+  
+  while (true) {
+            System.out.print("\nEnter choice: ");
+            String input = scanner.nextLine().trim();
+
+            // Check if user pressed 'p' or 'P'
+            if (input.equalsIgnoreCase("p")) {
+                
+                // 1. First 3 digits: Digits 0 through 7 only no 8 or 9
+                int d1 = random.nextInt(8); // Generates 0 to 7
+                int d2 = random.nextInt(8);
+                int d3 = random.nextInt(8);
+                String areaCode = String.format("%d%d%d", d1, d2, d3);
+
+                // 2. Second 3 digits: Range 000 to 655
+                int prefixInt = random.nextInt(656); // Generates 0 to 655
+                String prefix = String.format("%03d", prefixInt); // Preserves leading zeros
+
+                // 3. Last 4 digits: Range 0000 to 9999
+                int lineNumberInt = random.nextInt(10000); // Generates 0 to 9999
+                String lineNumber = String.format("%04d", lineNumberInt); // Preserves leading zeros
+
+                // Combine into final pattern: XXX-XXX-XXXX
+                String phoneNumber = String.format("%s-%s-%s", areaCode, prefix, lineNumber);
+                System.out.println("Generated Phone Number: " + phoneNumber);
+
+            } else {
+                System.out.println("Exiting generator. Goodbye!");
+                break;
+            }
+        }
+
+        scanner.close();
+    }
+}
+  
