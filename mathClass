@@ -1,0 +1,95 @@
+package mathclass;
+import java.util.Random;
+import java.util.Scanner;
+
+public class MathClass {
+
+    // Helper method to round a double value to a specified number of decimal places
+    public static double roundAvoid(double value, int places) {
+        double scale = Math.pow(10, places);
+        return Math.round(value * scale) / scale;
+    }
+
+    public static void main(String[] args) {
+        try (Scanner scanner = new Scanner(System.in)) {
+            Random rand = new Random();
+            
+           
+            //Random integer from 0 to 90
+           
+            int angle = rand.nextInt(91);
+            double radians = Math.toRadians(angle);
+            
+            double sinVal = roundAvoid(Math.sin(radians), 3);
+            double cosVal = roundAvoid(Math.cos(radians), 3);
+            double tanVal = roundAvoid(Math.tan(radians), 3);
+            
+            System.out.printf("Number: %d Sine: %.3f Cosine: %.3f Tangent: %.3f%n", angle, sinVal, cosVal, tanVal);
+            System.out.println();
+            
+           
+            //Circle Area & Sphere Volume 
+           
+            double radius = 1.0 + (20.0 - 1.0) * rand.nextDouble();
+            double area = Math.PI * Math.pow(radius, 2);
+            double sphereVolume = (4.0 / 3.0) * Math.PI * Math.pow(radius, 3);
+            
+            System.out.printf("Radius: %.3f%n", roundAvoid(radius, 3));
+            System.out.printf("Circle Area: %.3f%n", roundAvoid(area, 3));
+            System.out.printf("Sphere Volume: %.3f%n", roundAvoid(sphereVolume, 3));
+            System.out.println();
+            
+         
+            //Large Real Number (Sqrt, Ln, Log10)
+           
+            double minEnergy = 100_000_000.0;
+            double maxEnergy = 100_000_000_000.0;
+            double energyJoules = minEnergy + (maxEnergy - minEnergy) * rand.nextDouble();
+            
+            double sqrtVal = Math.sqrt(energyJoules);
+            double lnVal = Math.log(energyJoules);
+            double log10Val = Math.log10(energyJoules);
+            
+            System.out.printf("Large Number (Energy in Joules): %.5f%n", roundAvoid(energyJoules, 5));
+            System.out.printf("Square Root: %.5f%n", roundAvoid(sqrtVal, 5));
+            System.out.printf("Natural Logarithm (ln): %.5f%n", roundAvoid(lnVal, 5));
+            System.out.printf("Log10: %.5f%n", roundAvoid(log10Val, 5));
+            System.out.println();
+            
+           
+            //  Mass-Energy Equivalence (E = mc^2 -> m = E / c^2)
+           
+            System.out.print("Enter number of decimal places to round mass: ");
+            int massDecimals = scanner.nextInt();
+            
+            // Speed of light 
+            double speedOfLight = 299_792_458.0;
+            
+            // Mass in kg 
+            double massInKg = energyJoules / Math.pow(speedOfLight, 2);
+            double massInGrams = massInKg * 1000.0;
+            
+            double roundedMass = roundAvoid(massInGrams, massDecimals);
+            System.out.printf("Mass required (in Grams): %." + massDecimals + "f%n", roundedMass);
+            System.out.println();
+            
+           
+            //  User Input Power Calculation
+           
+            System.out.print("Enter a real number (base): ");
+            double base = scanner.nextDouble();
+            
+            System.out.print("Enter an integer (exponent): ");
+            int exponent = scanner.nextInt();
+            
+            System.out.print("Enter number of decimal places to round the power result: ");
+            int powerDecimals = scanner.nextInt();
+            
+            double powerResult = Math.pow(base, exponent);
+            double roundedPower = roundAvoid(powerResult, powerDecimals);
+            
+            System.out.printf("%.2f to the power of %d rounded to %d decimal places: %."
+                    + powerDecimals + "f%n", base, exponent, powerDecimals, roundedPower);
+        }
+    }
+}
