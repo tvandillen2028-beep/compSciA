@@ -1,0 +1,65 @@
+package username;
+import java.util.Scanner;
+
+/**
+ *
+ * @author tvandillen2028
+ */
+public class Username {
+    // Enums defined for questions 1a and 1b
+    enum Day {
+        SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY
+    }
+
+    enum Month {
+        January, February, March, April, May, June, July, August, September, October, November, December
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // Create Scanner object to read user input
+        Scanner scanner = new Scanner(System.in);
+
+        // Print days with 1-7 numbers
+        System.out.println("----Days of the Week----");
+        for (Day day : Day.values()) {
+            int dayNumber = day.ordinal() + 1;
+            System.out.println(day + " is day number " + dayNumber);
+        }
+
+        System.out.println();
+//print months with 1 - 12
+        System.out.println("----Months of the Year----");
+        for (Month month : Month.values()){
+            int monthNumber = month.ordinal() + 1;
+            System.out.println(month + " is month number " + monthNumber);
+        }
+
+        System.out.println();
+
+        // Prompt user and read input into the 'user' variable
+        System.out.print("Enter your CCHS username: ");
+        String user = scanner.nextLine().trim();
+
+        // Extract the 4-digit year from the end of the username
+        String yearString = user.substring(user.length() - 4);
+
+        // Parse the year string into an int
+        int gradYear = Integer.parseInt(yearString);
+
+        // Calculate the year after graduation
+        int yearAfter = gradYear + 1;
+
+        // Convert the graduation year to binary
+        String binaryYear = Integer.toBinaryString(gradYear);
+
+        // Output the results
+        System.out.println("Graduation Year: " + gradYear);
+        System.out.println("The year after graduation: " + yearAfter);
+        System.out.println("In computer language, you graduate in: " + binaryYear);
+
+        scanner.close();
+    }
+}
