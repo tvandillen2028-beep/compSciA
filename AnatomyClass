@@ -1,0 +1,114 @@
+package AnatomyClass;
+
+
+//1. Class is a blueprint, template or prototype that defines the properties that a set of objects
+//will have. An object is an instance of a class created in memory
+//it holds actual data
+
+//2. when an object is passed, Java automatically calls the objects
+//toString() method behind the scenes and prints the resulting
+//String. If the class has not overidden toString(), it defaults
+// to the Object class implementation, which prints the 
+//class name followed by @ and the memory address hashcode
+
+//3. In a method, the scope extends from the line where the
+//variable is declared to the end of the enclosing block.
+//Local variables cannot be accessed outside that block and exist
+//only while the block is executing. In a class, the scope encompasses
+//the entire class definition. Instance variables can be accessed
+//by any not static method witin the class throughout the objects lifecycle.
+//
+/**
+ *
+ * @author tvandillen2028
+ */
+class Car {
+
+    private String carBrand;
+    private int enginePower;
+    private double maxSpeed;
+    private double price;
+
+    // Base constructor
+    public Car() {
+        this.carBrand = "Generic";
+        this.enginePower = 100;
+        this.maxSpeed = 100.0;
+        this.price = 15000.00;
+    }
+
+    // Parameterized constructor
+    public Car(String carBrand, int enginePower, double maxSpeed, double price) {
+        this.carBrand = carBrand;
+        this.enginePower = enginePower;
+        this.maxSpeed = maxSpeed;
+        this.price = price;
+    }
+
+    // --- Getters and Setters ---
+
+    public String getCarBrand() {
+        return carBrand;
+    }
+
+    public void setCarBrand(String carBrand) {
+        this.carBrand = carBrand;
+    }
+
+    public int getEnginePower() {
+        return enginePower;
+    }
+
+    public void setEnginePower(int enginePower) {
+        this.enginePower = enginePower;
+    }
+
+    public double getMaxSpeed() {
+        return maxSpeed;
+    }
+
+    public void setMaxSpeed(double maxSpeed) {
+        this.maxSpeed = maxSpeed;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    // toString method
+    @Override
+    public String toString() {
+        return String.format("Brand: %-15s | Power: %3d HP | Top Speed: %5.1f MPH | Price: $%,.2f",
+                carBrand, enginePower, maxSpeed, price);
+    }
+} 
+
+// Main driver class placed outside Car
+class Main {
+
+    public static void main(String[] args) {
+
+        // 1. Debug Step: Test base constructor
+        System.out.println("=== Base Car Test ===");
+        Car baseCar = new Car();
+        System.out.println(baseCar);
+        System.out.println();
+
+        // 2. Driver Code: Create the specified car models
+        Car vwBug = new Car("VW Bug", 60, 90.0, 18000.00);
+        Car prius = new Car("Toyota Prius", 121, 112.0, 28000.00);
+        Car bmwI8 = new Car("BMW i8", 369, 155.0, 147500.00);
+        Car teslaModel3 = new Car("Tesla Model 3", 283, 140.0, 40000.00);
+
+        // Print details for all cars
+        System.out.println("=== Car List Details ===");
+        System.out.println(vwBug);
+        System.out.println(prius);
+        System.out.println(bmwI8);
+        System.out.println(teslaModel3);
+    }
+}
