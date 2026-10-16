@@ -1,0 +1,40 @@
+/**
+ * Calculates monthly loan repayments, including interest.
+ * The internal loan details are private to this class.
+ */
+public class InterestRateCalculator {
+
+    // Public constant: annual interest rate of 3.5%.
+    public static final double RATE = 0.035;
+
+    // Private variables: cannot be accessed directly from Main.
+    private double amount;
+    private int months;
+    private double monthlyPayment;
+
+    /**
+     * Constructor receives the loan amount and repayment period.
+     */
+    public InterestRateCalculator(double amount, int months) {
+        this.amount = amount;
+        this.months = months;
+    }
+
+    /**
+     * Calculates the monthly repayment.
+     * Divides the original amount by the months, then adds
+     * one month's interest to that principal repayment.
+     *
+     * @return the monthly repayment amount
+     */
+    public double calculateMonthlyPayment() {
+        double monthlyInterestRate = RATE / 12;
+
+        double monthlyPrincipal = amount / months;
+        double interest = amount * monthlyInterestRate;
+
+        monthlyPayment = monthlyPrincipal + interest;
+
+        return monthlyPayment;
+    }
+}
