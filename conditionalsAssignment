@@ -1,0 +1,114 @@
+package conditionalsassignment;
+import java.util.Scanner;
+/**
+ *
+ * @author tvandillen2028
+ */
+public class ConditionalsAssignment {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        // TODO code application logic here
+    final double MAX_BUDGET = 250.00;
+        double totalSpent = 0.0;
+        int itemCount = 0;
+
+        // Initialize available store items based on instructions
+        Item tShirt = new Item("T Shirt", 29.99);
+        Item shoes = new Item("Shoes", 125.99);
+        Item jeans = new Item("Jeans", 60.99);
+        Item jacket = new Item("Jacket", 250.00);
+        Item hat = new Item("Hat", 25.99);
+        Item shorts = new Item("Shorts", 75.99);
+        Item blouse = new Item("Blouse", 88.99);
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Welcome to MyStore!");
+        System.out.println("Available items: T Shirt, Shoes, Jeans, Jacket, Hat, Shorts, Blouse");
+        System.out.printf("Budget limit: $%.2f%n", MAX_BUDGET);
+        System.out.println("Type 'exit' or 'done' to stop shopping.\n");
+
+        while (true) {
+            System.out.print("Enter an item to buy: ");
+            String input = scanner.nextLine().trim();
+
+            if (input.equalsIgnoreCase("exit") || input.equalsIgnoreCase("done")) {
+                System.out.println("Thank you for shopping!");
+                break;
+            }
+
+            Item selectedItem = null;
+
+            // Match user input to available items (case-insensitive)
+            if (input.equalsIgnoreCase("T Shirt")) {
+                selectedItem = tShirt;
+            } else if (input.equalsIgnoreCase("Shoes")) {
+                selectedItem = shoes;
+            } else if (input.equalsIgnoreCase("Jeans")) {
+                selectedItem = jeans;
+            } else if (input.equalsIgnoreCase("Jacket")) {
+                selectedItem = jacket;
+            } else if (input.equalsIgnoreCase("Hat")) {
+                selectedItem = hat;
+            } else if (input.equalsIgnoreCase("Shorts")) {
+                selectedItem = shorts;
+            } else if (input.equalsIgnoreCase("Blouse")) {
+                selectedItem = blouse;
+            } else {
+                System.out.println("Item not recognized. Please try again.\n");
+                continue;
+            }
+
+            // Conditional budget check
+            if (totalSpent + selectedItem.getDblPrice() > MAX_BUDGET) {
+                System.out.printf("WARNING: Cannot purchase %s! Adding it ($%.2f) exceeds your remaining budget ($%.2f).%n",
+                        selectedItem.getStrName(), selectedItem.getDblPrice(), (MAX_BUDGET - totalSpent));
+            } else {
+                totalSpent += selectedItem.getDblPrice();
+                itemCount++;
+                System.out.println("Added: " + selectedItem);
+            }
+
+            System.out.printf("Total items bought: %d | Total spent: $%.2f%n%n", itemCount, totalSpent);
+        }
+
+        scanner.close();
+    }
+}
+
+class Item {
+    private String strName;
+    private double dblPrice;
+
+    // Constructor
+    public Item(String strName, double dblPrice) {
+        this.strName = strName;
+        this.dblPrice = dblPrice;
+    }
+
+    // Getters and Setters
+    public String getStrName() {
+        return strName;
+    }
+
+    public void setStrName(String strName) {
+        this.strName = strName;
+    }
+
+    public double getDblPrice() {
+        return dblPrice;
+    }
+
+    public void setDblPrice(double dblPrice) {
+        this.dblPrice = dblPrice;
+    }
+
+    // toString method
+    @Override
+    public String toString() {
+        return "Item: " + strName + ", Price: " + dblPrice;
+    }
+}
