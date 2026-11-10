@@ -1,0 +1,79 @@
+public class StarPatterns {
+
+    public static void main(String[] args) {
+        System.out.println("Pattern A:");
+        printPatternA();
+
+        System.out.println("\nPattern B:");
+        printPatternB();
+
+        System.out.println("\nPattern C:");
+        printPatternC();
+
+        System.out.println("\nPattern D:");
+        printPatternD();
+    }
+
+    // Pattern A: Inverted Left-Aligned Triangle
+    public static void printPatternA() {
+        for (int i = 10; i >= 1; i--) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
+    // Pattern B: Right-Aligned Triangle
+    public static void printPatternB() {
+        for (int i = 1; i <= 10; i++) {
+            for (int j = 1; j <= 10 - i; j++) {
+                System.out.print(" ");
+            }
+            for (int k = 1; k <= i; k++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
+    // Pattern C: Inverted Right-Aligned Triangle
+    public static void printPatternC() {
+        for (int i = 10; i >= 1; i--) {
+            for (int j = 1; j <= 10 - i; j++) {
+                System.out.print(" ");
+            }
+            for (int k = 1; k <= i; k++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
+    // Pattern D: Diamond
+    public static void printPatternD() {
+        int maxRows = 5;
+
+        // Top half
+        for (int i = 1; i <= maxRows; i++) {
+            for (int j = 1; j <= maxRows - i; j++) {
+                System.out.print(" ");
+            }
+            for (int k = 1; k <= (2 * i - 1); k++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+
+        // Bottom half
+        for (int i = maxRows; i >= 1; i--) {
+            for (int j = 1; j <= maxRows - i; j++) {
+                System.out.print(" ");
+            }
+            for (int k = 1; k <= (2 * i - 1); k++) {
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+}
